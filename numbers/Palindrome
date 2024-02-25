@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+// Function to check if a character is a letter
+int isLetter(char c) {
+    return isalpha(c);
+}
+
+// Function to convert a character to lowercase
+char toLower(char c) {
+    return tolower(c);
+}
+
+// Function to check if a string is a palindrome
+int isPalindrome(char *str) {
+    int left = 0;
+    int right = strlen(str) - 1;
+
+    while (left < right) {
+        // Skip non-letters from the left
+        while (left < right && !isLetter(str[left])) {
+            left++;
+        }
+        // Skip non-letters from the right
+        while (left < right && !isLetter(str[right])) {
+            right--;
+        }
+        // Convert both characters to lowercase for case insensitivity
+        if (toLower(str[left]) != toLower(str[right])) {
+            return 0; // Not a palindrome
+        }
+        left++;
+        right--;
+    }
+    return 1; // Palindrome
+}
+
+int main() {
+    char str[100];
+    
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    
+    // Remove the newline character if present
+    if (str[strlen(str) - 1] == '\n') {
+        str[strlen(str) - 1] = '\0';
+    }
+
+    if (isPalindrome(str)) {
+        printf("%s is a palindrome.\n", str);
+    } else {
+        printf("%s is not a palindrome.\n", str);
+    }
+
+    return 0;
+}
