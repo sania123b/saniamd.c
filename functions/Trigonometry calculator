@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    double angle, result;
+    char operation;
+
+    printf("Enter the operation (sin, cos, tan): ");
+    scanf("%c", &operation);
+
+    printf("Enter the angle in degrees: ");
+    scanf("%lf", &angle);
+
+    // Convert angle from degrees to radians
+    angle = angle * M_PI / 180.0;
+
+    switch (operation) {
+        case 's':
+        case 'S':
+            result = sin(angle);
+            printf("Sin(%.2lf) = %.2lf\n", angle * 180.0 / M_PI, result);
+            break;
+        case 'c':
+        case 'C':
+            result = cos(angle);
+            printf("Cos(%.2lf) = %.2lf\n", angle * 180.0 / M_PI, result);
+            break;
+        case 't':
+        case 'T':
+            result = tan(angle);
+            printf("Tan(%.2lf) = %.2lf\n", angle * 180.0 / M_PI, result);
+            break;
+        default:
+            printf("Invalid operation\n");
+            break;
+    }
+
+    return 0;
+}
