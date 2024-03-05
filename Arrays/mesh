@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_MESHES 10
+
+// Structure to represent a resistor
+typedef struct {
+    int startNode;
+    int endNode;
+    double resistance;
+} Resistor;
+
+// Structure to represent a voltage source
+typedef struct {
+    int startNode;
+    int endNode;
+    double voltage;
+} VoltageSource;
+
+// Structure to represent a mesh loop
+typedef struct {
+    double current;
+} MeshLoop;
+
+int main() {
+    int numMeshes, numResistors, numVoltageSources;
+    Resistor resistors[MAX_MESHES];
+    VoltageSource voltageSources[MAX_MESHES];
+    MeshLoop meshLoops[MAX_MESHES];
+
+    printf("Enter the number of mesh loops: ");
+    scanf("%d", &numMeshes);
+
+    printf("Enter the number of resistors: ");
+    scanf("%d", &numResistors);
+
+    printf("Enter the number of voltage sources: ");
+    scanf("%d", &numVoltageSources);
+
+    // Input resistors
+    printf("Enter the resistors:\n");
+    for (int i = 0; i < numResistors; i++) {
+        printf("Resistor %d (startNode endNode resistance): ", i + 1);
+        scanf("%d %d %lf", &resistors[i].startNode, &resistors[i].endNode, &resistors[i].resistance);
+    }
+
+    // Input voltage sources
+    printf("Enter the voltage sources:\n");
+    for (int i = 0; i < numVoltageSources; i++) {
+        printf("Voltage source %d (startNode endNode voltage): ", i + 1);
+        scanf("%d %d %lf", &voltageSources[i].startNode, &voltageSources[i].endNode, &voltageSources[i].voltage);
+    }
+
+    // Perform mesh analysis (calculate currents)
+    // Add your mesh analysis algorithm here
+
+    // Output the currents in the mesh loops
+    printf("\nMesh Loop Currents:\n");
+    for (int i = 0; i < numMeshes; i++) {
+        printf("Mesh Loop %d: %.2lf A\n", i + 1, meshLoops[i].current);
+    }
+
+    return 0;
+}
